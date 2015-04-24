@@ -276,6 +276,7 @@
             listarGrado();
             listarEstadoCivil();
             listarOcupacion();
+            listarAulas();
             $("#txtbuscaralumno").autocomplete({
             source: "matriculas/buscaralumno", //el archivo que realiza la busqueda
             minLength: 2, //le decimos que tenga al menos 2 caracteres para ejecutrar la busqueda
@@ -432,6 +433,23 @@
     	function listarOcupacion(){
     		$.ajax({
                 url: "matriculas/listarocupacion",
+                type: "get",
+                dataType: "json",
+                success: function(DataJson){
+                    if(DataJson.state){
+                        for(data in DataJson.resultado){
+                           $("#txtocupacionapo").append("<option value="+DataJson.resultado[data].id_ocupacion+">"+DataJson.resultado[data].descripcion+"</option>");
+                        }  
+                   	}else{
+                           
+                    }                      
+                                                      
+                }
+            }); 
+    	}
+    	function listarAulas(){
+    		$.ajax({
+                url: "matriculas/listaraulas",
                 type: "get",
                 dataType: "json",
                 success: function(DataJson){

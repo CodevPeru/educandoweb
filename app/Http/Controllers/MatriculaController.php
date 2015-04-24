@@ -86,11 +86,11 @@ class MatriculaController extends Controller {
 		//
 	}
 
-	public function getListarcursos(){
+	public function getListaraulas(){
 		DB::beginTransaction();
 		try {
 				
-				$resultado = DB::select('call sp_listar_curso()');
+				$resultado = DB::select('call sp_listar_aulas()');
 				DB::commit();
 				$array = $resultado;				
 				$json["resultado"] = $resultado;	
