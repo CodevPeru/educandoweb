@@ -84,6 +84,7 @@
 				<br>
 				<label>Tipo Documento:</label>
 				<select class="form-control" id="cmbtipodocumentoalu" name="cmbtipodocumentoalu" onchange="validardocumentoalumno(this.value)">
+					<option>Elegir Tipo Documento</option>
 					<option value="1">DNI</option>
 					<option value="2">Pasaporte</option>
 				</select>
@@ -92,11 +93,11 @@
 				<label>Nombres:</label>
 				<input type="text" class="form-control" id="txtnombresalu" name="txtnombresalu">
 				<label>Apellidos:</label>
-				<input type="text" class="form-control" id="txtapellidos" name="txtapellidosalu">
+				<input type="text" class="form-control" id="txtapellidosalu" name="txtapellidosalu">
 				<label>Fecha Nacimiento:</label>
-				<input type="text" class="form-control" id="txtfechanacimiento" name="txtfechanacimientoalu">
+				<input type="text" class="form-control" id="txtfechanacimientoalu" name="txtfechanacimientoalu">
 				<label>Sexo:</label>
-				<select class="form-control" id="cmbsexo" name="cmbsexoalu">
+				<select class="form-control" id="cmbsexoalu" name="cmbsexoalu">
 					<option value="1">Masculino</option>
 					<option value="2">Femenino</option>
 				</select>
@@ -200,14 +201,12 @@
 			<div class="containermatricula">
 			    <br>
 			    <label>Estado Civil:</label>
-				<select class="form-control" name="txtestadocivilapo">
-					<option value="1">Casado</option>
-					<option value="2">Soltero</option>
+				<select class="form-control" name="txtestadocivilapo" id="txtestadocivilapo">
+					<option>Elegir estado</option>
 				</select>
 				<label>Ocupación:</label>
-				<select class="form-control" name="txtocupacionapo">
-					<option value="1">Ingeniero</option>
-					<option value="2">Arquitecto</option>
+				<select class="form-control" name="txtocupacionapo" id="txtocupacionapo">
+					<option>Elegir ocupacion</option>
 				</select>
 				<label>Centro de Trabajo:</label>
 				<input type="text" class="form-control" name="txtcentrotrabajoapo">
@@ -229,18 +228,17 @@
 				<br>
 				<label>Turno:</label>
 				<select class="form-control" name="txtturno">
+					<option>Elegir Turno</option>
 					<option value="1">Mañana</option>
 					<option value="2">Tarde</option>
 				</select>
 				<label>Grado:</label>
-				<select class="form-control" name="txtgrado">
-					<option value="1">1ero</option>
-					<option value="2">2do</option>
+				<select class="form-control" name="txtgrado" id="txtgrado">
+					<option>Elegir Grado</option>
 				</select>
 				<label>Aula:</label>
-				<select class="form-control" name="txtaula">
-					<option value="1">A</option>
-					<option value="2">B</option>
+				<select class="form-control" name="txtaula" id="txtaula">
+					<option>Elegir Aula</option>
 				</select>
 				<br>
 			    <ul class="pager">
@@ -275,8 +273,6 @@
             $("#txtfechanacimientoapoderado").datepicker({ changeMonth: true,
       changeYear: true, dateFormat:'yy-mm-dd'});
             $("#txtnumerodocumentoalu").numeric();
-
-            listarCursos();
             listarGrado();
             listarEstadoCivil();
             listarOcupacion();
@@ -289,14 +285,10 @@
     	});
     	 function f_seleccionar_registro(event, ui){
         	 event.preventDefault();
-            alert("aaa");
-            
-           
         }
         
         function f_marcar_registro(event, ui){
         	 event.preventDefault();
-           alert("eee");
         }
     	function verDatos(parametro){
             if(parametro==1){
@@ -311,8 +303,18 @@
                 $("#d3").attr("class","");
             }
             else if(parametro==2){
-                $("#datos1").hide();
-                $("#datos2").show();
+            	var tipodcumento=$("#cmbtipodocumentoalu").val();
+            	var nrodocumento=$("#txtnumerodocumentoalu").val();
+            	var nombre=$("#txtnombresalu").val();
+            	var apellido=$("#txtapellidosalu").val();
+            	var fechanacimiento=$("#txtfechanacimientoalu").val();
+            	var sexo=$("#cmbsexoalu").val();
+
+            	if (tipodcumento!="" && nrodocumento!="" && nombre!="" && apellido!="" && fechanacimiento!="" && sexo!="") {
+            		$("#datos1").hide();
+                	$("#datos2").show();
+            	}
+                
             }else if(parametro==3){
                 $("#datos1").hide();
                 $("#datos2").hide();
@@ -392,26 +394,6 @@
                 }
             }); 
     	}
-
-    	function listarCursos(){
-    		$.ajax({
-                url: "matriculas/listarcursos",
-                type: "get",
-                dataType: "json",
-                success: function(DataJson){
-                    if(DataJson.state){
-                        for(data in DataJson.resultado){
-                              // alert(DataJson.resultado[data].nombre_curso);
-                                //alert(DataJson.resultado[data].nombre_alumno);
-                        }  
-                   	}else{
-                           
-                    }                      
-                                                      
-                }
-            }); 
-    	}
-
     	function listarGrado(){
     		$.ajax({
                 url: "matriculas/listargrados",
@@ -420,8 +402,7 @@
                 success: function(DataJson){
                     if(DataJson.state){
                         for(data in DataJson.resultado){
-                              // alert(DataJson.resultado[data].nombre_grado);
-                                //alert(DataJson.resultado[data].nombre_alumno);
+                            $("#txtgrado").append("<option value="+DataJson.resultado[data].id_grado+">"+DataJson.resultado[data].nombre_grado+"</option>");
                         }  
                    	}else{
                            
@@ -439,8 +420,7 @@
                 success: function(DataJson){
                     if(DataJson.state){
                         for(data in DataJson.resultado){
-                            //  alert(DataJson.resultado[data].descripcion);
-                                //alert(DataJson.resultado[data].nombre_alumno);
+                            $("#txtestadocivilapo").append("<option value="+DataJson.resultado[data].id_estadocivil+">"+DataJson.resultado[data].descripcion+"</option>");
                         }  
                    	}else{
                            
@@ -457,8 +437,7 @@
                 success: function(DataJson){
                     if(DataJson.state){
                         for(data in DataJson.resultado){
-                             //  alert(DataJson.resultado[data].descripcion);
-                                //alert(DataJson.resultado[data].nombre_alumno);
+                           $("#txtocupacionapo").append("<option value="+DataJson.resultado[data].id_ocupacion+">"+DataJson.resultado[data].descripcion+"</option>");
                         }  
                    	}else{
                            
