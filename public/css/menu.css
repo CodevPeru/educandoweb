@@ -1,0 +1,175 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700");
+body {
+  background: #ffffff;
+  font-family: "Open Sans";
+  font-weight: 300;
+}
+
+nav {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+nav li {
+  margin: 0;
+  padding: 0;
+  height: 80px;
+  width: 80px;
+}
+nav a {
+  position: relative;
+  z-index: 100;
+  color: white;
+  text-decoration: none;
+  font-size: 40px;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  -webkit-perspective-origin: center top;
+          perspective-origin: center top;
+}
+nav a:after {
+  content: "";
+  font-size: 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 200%;
+  -webkit-transform: rotateY(180deg) translateX(80px);
+          transform: rotateY(180deg) translateX(80px);
+  -webkit-transform-origin: 100% 50%;
+      -ms-transform-origin: 100% 50%;
+          transform-origin: 100% 50%;
+  -webkit-transition: -webkit-transform .5s ease-out;
+          transition: transform .5s ease-out;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+}
+nav a:hover:after {
+  -webkit-transform: rotateY(0) translateX(80px);
+          transform: rotateY(0) translateX(80px);
+}
+nav .home a {
+  background: #28abe3;
+}
+nav .home a:hover:after {
+  border-left: 2px solid #28abe3;
+}
+nav .home a:after {
+  background: #28abe3;
+  font-weight: bold;
+  content: "Matricula";
+}
+nav .user a {
+  background: #72bf48;
+}
+nav .user a:hover:after {
+  border-left: 2px solid #72bf48;
+}
+nav .user a:after {
+  background: #72bf48;
+  font-weight: bold;
+  content: "Registro de Actividad";
+}
+nav .heart a {
+  background: #fb6648;
+}
+nav .heart a:hover:after {
+  border-left: 2px solid #fb6648;
+}
+nav .heart a:after {
+  background: #fb6648;
+  font-weight: bold;
+  content: "Reporte Asistencia Personal";
+}
+nav .contact a {
+  background: #0eceab;
+}
+nav .contact a:hover:after {
+  border-left: 2px solid #0eceab;
+}
+nav .contact a:after {
+  background: #0eceab;
+  font-weight: bold;
+  content: "Reporte Asistencia Alumno";
+}
+nav .comportamiento a {
+  background: #fa6900;
+}
+nav .comportamiento a:hover:after {
+  border-left: 2px solid #fa6900;
+}
+nav .comportamiento a:after {
+  background: #fa6900;
+  font-weight: bold;
+  content: "Registrar Comportamiento";
+}
+nav .personal a {
+  background: #28abe3;
+}
+nav .personal a:hover:after {
+  border-left: 2px solid #28abe3;
+}
+nav .personal a:after {
+  background: #28abe3;
+  font-weight: bold;
+  content: "Permisos Personal";
+}
+nav .alumno a {
+  background: #0eceab;
+}
+nav .alumno a:hover:after {
+  border-left: 2px solid #0eceab;
+}
+nav .alumno a:after {
+  background: #0eceab;
+  font-weight: bold;
+  content: "Permisos Alumno";
+}
+nav .suspensiones a {
+  background: #fb6648;
+}
+nav .suspensiones a:hover:after {
+  border-left: 2px solid #fb6648;
+}
+nav .suspensiones a:after {
+  background: #fb6648;
+  font-weight: bold;
+  content: "Registrar Suspensiones";
+}
+
+
