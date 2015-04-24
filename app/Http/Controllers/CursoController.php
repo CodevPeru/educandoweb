@@ -86,4 +86,8 @@ class CursoController extends Controller {
 		//
 	}
 
+	public function getCursos(){
+		
+	}
+
 }
